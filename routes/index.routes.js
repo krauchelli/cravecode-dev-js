@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const controllers = require('../controllers/index.controller');
 
 
 router.get('/', async (req, res) => {
@@ -22,6 +23,10 @@ router.get('/register', async (req, res) => {
 router.get('/profile', async (req, res) => {
     res.render('users/profile');
 });
+
+// konfigurasi routing jika ingin menampilkan spesifik user
+// log: error di bagian ejs template, masih belum bisa menampilkan data user
+router.get('/profile/:id', controllers.getUser);
 
 router.get('/shop', async (req, res) => {
     res.render('shop');
