@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CraveCode Bakery</title>
+    <link rel="stylesheet" href="/styles/style-landing.css">
+</head>
+
+<body>
+    <header id="home">
+        <%- include("partials/sidebar") %>
+
+        <div class="hero">
+
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <pre>
+    <div class="land">
+        <h1>WELCOME TO CRAVECODE!</h1>
+        <h3>Sweet moments, 
+        freshly baked with 
+        love</h3>
+        <p>Customized cakes, treats and everything sweet for all.</p>
+        <div class="button-container">
+            <button><a href="#Menu">Lihat Menu</a></button>
+            <button><a href="https://wa.me/6282213549274?text=hi%20codemin,%20mau%20pesan%20ya!" target="_blank">
+                    <img src="/images/logowa.png" alt="WA">
+                </a>
+            </button>
+        </div>
+    </div>
+                    </pre>
+                </td>
+                <td>
+                    <pre>
+    <img src="/images/cookiez.png" alt="Cookiez Image">
+                    </pre>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </header>
+
+    <!-- nanda ini login-->
+
+    <!-- nanda ini regis-->
+    <div class="popup-regis" id="regis-popup">
+        <div class="popup-content-regis">
+            <span class="close" onclick="closeRegis(); closeLogin()">&times;</span>
+            <h2>Register</h2>
+            <form>
+                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="text" id="email" name="email" placeholder="Email">
+                <input type="text" id="phone" name="phone number" placeholder="Phone">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <button class="button-login" type="submit">Submit</button>
+                <a class="register-klik">Already have an account?<a href="#login" onclick="closeRegis()">Login</a></a>
+            </form>
+        </div>
+    </div>
+
+
+    <section id="cart" class="best-sellers">
+        <h2>CRAVECODE BEST SELLERS</h2>
+        <div class="products">
+            <div class="product">
+                <img src="/images/product1.png" alt="1-code chocolate megabit">
+                <h3>1-code chocolate megabit</h3>
+                <p>Chocolate lovers, ini dia surga dalam bentuk cookie! 1-Code Chocolate Megabit, cookie cokelat yang
+                    penuh cinta.</p>
+                <p>Rp12.000</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/product2.png" alt="box-code bit">
+                <h3>box-code bit</h3>
+                <p>Box-Code Bit, teman ngemil di mana saja! Cookies dalam kotak praktis yang siap mengguncang harimu
+                    dengan kelezatan.</p>
+                <p>Rp32.000</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/product3.png" alt="4-code premium bit">
+                <h3>4-code premium bit</h3>
+                <p> Rasakan kemewahan 4-Code Premium Bit! Cookies berkualitas premium yang dibuat dari bahan-bahan
+                    terbaik.</p>
+                <p>Rp56.000</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="Menu" class="menu">
+        <h2>MENU</h2>
+        <div class="products">
+            <div class="product">
+                <img src="/images/product4.png" alt="5-code mix megabit">
+                <h3>5-code mix megabit</h3>
+                <p>Bosan sama yang biasa? 5-Code Mix Megabit punya lima rasa seru dalam satu paket!</p>
+                <p>Rp60.000</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/product5.png" alt="birth-code gigabit">
+                <h3>birth-code gigabit</h3>
+                <p>Selamat ulang tahun! Birth-Code Gigabit hadir untuk merayakan hari spesialmu dengan bigcookie.</p>
+                <p>Rp39.000</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/product6.png" alt="all-code gift hampers">
+                <h3>all-code gift hampers</h3>
+                <p>Kejutkan orang tersayang dengan All-Code Gift Hampers, paket ajaib yang penuh dengan kebahagiaan
+                    renyah!</p>
+                <p>Rp84.000</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="products">
+            <div class="product">
+                <img src="/images/product1.png" alt="1-code chocolate megabit">
+                <h3>1-code chocolate megabit</h3>
+                <p>Chocolate lovers, ini dia surga dalam bentuk cookie! 1-Code Chocolate Megabit, cookie cokelat yang
+                    penuh cinta.</p>
+                <p>Rp12.000</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/product2.png" alt="box-code bit">
+                <h3>box-code bit</h3>
+                <p>Box-Code Bit, teman ngemil di mana saja! Cookies dalam kotak praktis yang siap mengguncang harimu
+                    dengan kelezatan.</p>
+                <p>Rp32.000</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="/images/product3.png" alt="4-code premium bit">
+                <h3>4-code premium bit</h3>
+                <p> Rasakan kemewahan 4-Code Premium Bit! Cookies berkualitas premium yang dibuat dari bahan-bahan
+                    terbaik.</p>
+                <p>Rp56.000</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="customers">
+        <h2>OUR CUSTOMERS</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <img src="/images/customer1.jpg" alt="Bianka P.">
+                    <p>Recheli D. <br> Cengkareng, Jakarta</p>
+                </div>
+                <p>sukaa bangett semua variannya, soft cookie sama hardcookies manisnya pas!</p>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-header">
+                    <img src="/images/customer2.jpg" alt="Jakub S.">
+                    <p>Lucas K. <br> Dago, Bandung</p>
+                </div>
+                <p>All-codenya OKeee banget, cocok untuk lebaran.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="faq">
+        <h2>FAQ</h2>
+        <div class="questions">
+            <div class="question">
+                <p>Location?</p>
+                <div class="answer">
+                    <p>Jl. Sumpah Pemuda Barat No.111, Ruko Blok-C, Jakarta Selatan,21730 </p>
+                </div>
+            </div>
+            <div class="question">
+                <p>Delivery Service?</p>
+                <div class="answer">
+                    <p>JNE,JNT,Wahana</p>
+                    <p>Gojek Instant Delivery : Jabodetabek</p>
+                </div>
+            </div>
+            <div class="question">
+                <p>Ingredients?</p>
+                <div class="answer">
+                    <p>flour, granulated sugar, butter, vanilla extract, chocolate chips</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include("partials/footer") %>
+
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>
