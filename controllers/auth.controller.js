@@ -34,12 +34,49 @@ const registerController = async (req, res) => {
         return res.redirect('/login');
 
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        return res.status(500).json({ 
+            title: 'Error occured when registering user',
+            message: error.message 
+        });
+    }
+};
+
+const loginController = async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // validasi apakah user sudah terdaftar
+        const user = await prisma.user.findUnique({
+            where: {
+                username
+            }
+        });
+        if (!user) {
+            return res.redirect('/login');
+        }
+
+        // validasi password
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            return res.redirect('/login');
+        }
+
+        // set session
+        req.session.user = user.id;
+
+        return res.redirect('/profile');
+    } catch (error) {
+        return res.status(500).json({ 
+            title: 'Error occured when logging in',
+            message: error.message 
+        });
+    
     }
 };
 
 
 // export
 module.exports = {
-    registerController
+    registerController,
+    loginController
 };
