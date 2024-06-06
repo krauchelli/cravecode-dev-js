@@ -13,15 +13,17 @@ const getAllUser = async (req, res) => {
 
 // get specific user, bisa dipake untuk profile routing
 const getUser = async (req, res) => {
-    const { username } = req.params;
-    const user = await prisma.user.findUnique({
-        where: {
-            username
-        },
-    });
-    console.log(user);
-
-    res.render('profile', { user });
+    console.log(req.session.user);
+    try {
+        const user = await prisma.user.findUnique({ where: { id: req.session.user } });
+    
+        res.render('profile', { user });
+    } catch (error) {
+        res.status(500).json({ 
+            title: 'Error occured when getting user',
+            message: error.message 
+        });
+    }
 };  
 
 module.exports = {
