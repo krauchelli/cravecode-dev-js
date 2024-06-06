@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middlewares/auth');
 
 const controllers = require('../controllers/index.controller');
 
@@ -20,7 +21,7 @@ router.get('/register', async (req, res) => {
     res.render('register');
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', auth, async (req, res) => {
     res.render('profile', controllers.getUser);
 });
 
@@ -38,5 +39,6 @@ router.get('/completed', async (req, res) => {
 
 // kumpulan post
 router.post('/register', controllers.registerController);
+router.post ('/login', controllers.loginController);
 
 module.exports = router;
