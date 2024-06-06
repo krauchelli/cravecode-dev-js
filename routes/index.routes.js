@@ -36,4 +36,7 @@ router.get('/completed', async (req, res) => {
     res.render('completed');
 });
 
+// kumpulan post
+router.post('/register', controllers.registerController);
+
 module.exports = router;
