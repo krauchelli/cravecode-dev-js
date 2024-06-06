@@ -13,20 +13,20 @@ router.get('/home', async (req, res) => {
 });
 
 router.get('/login', async (req, res) => {
-    res.render('users/login');
+    res.render('login');
 });
 
 router.get('/register', async (req, res) => {
-    res.render('users/register');
+    res.render('register');
 });
 
 router.get('/profile', async (req, res) => {
-    res.render('users/profile');
+    res.render('profile');
 });
 
 // konfigurasi routing jika ingin menampilkan spesifik user
 // log: error di bagian ejs template, masih belum bisa menampilkan data user
-router.get('/profile/:id', controllers.getUser);
+router.get('/profile/:username', controllers.getUser);
 
 router.get('/shop', async (req, res) => {
     res.render('shop');
