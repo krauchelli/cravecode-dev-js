@@ -21,12 +21,8 @@ router.get('/register', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
-    res.render('profile');
+    res.render('profile', controllers.getUser);
 });
-
-// konfigurasi routing jika ingin menampilkan spesifik user
-// log: error di bagian ejs template, masih belum bisa menampilkan data user
-router.get('/profile/:username', controllers.getUser);
 
 router.get('/shop', async (req, res) => {
     res.render('shop');
