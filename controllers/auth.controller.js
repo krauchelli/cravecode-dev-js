@@ -63,6 +63,7 @@ const loginController = async (req, res) => {
 
         // set session
         req.session.user = user.id;
+        console.log(req.session.user);
 
         return res.redirect('/profile');
     } catch (error) {
