@@ -21,9 +21,7 @@ router.get('/register', async (req, res) => {
     res.render('register');
 });
 
-router.get('/profile', auth, async (req, res) => {
-    res.render('profile', controllers.getUser);
-});
+router.get('/profile', auth, controllers.getUser);
 
 router.get('/shop', async (req, res) => {
     res.render('shop');
