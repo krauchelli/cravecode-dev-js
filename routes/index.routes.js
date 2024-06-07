@@ -1,23 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middlewares/auth');
+const {auth, redirectIfAuthenticated} = require('../middlewares/auth');
 
 const controllers = require('../controllers/index.controller');
 
 
+// kumpulan get
 router.get('/', async (req, res) => {
-    res.render('test', { title: 'Express' });
-});
-
-router.get('/home', async (req, res) => {
     res.render('cravecode');
 });
 
-router.get('/login', async (req, res) => {
+router.get('/login', redirectIfAuthenticated, async (req, res) => {
     res.render('login');
 });
 
-router.get('/register', async (req, res) => {
+router.get('/register', redirectIfAuthenticated, async (req, res) => {
     res.render('register');
 });
 
