@@ -55,7 +55,10 @@
                 <p>Chocolate lovers, ini dia surga dalam bentuk cookie! 1-Code Chocolate Megabit, cookie cokelat yang
                     penuh cinta.</p>
                 <p>Rp12.000</p>
-                <button>Add to Cart</button>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="productId" value="product1">
+                    <button type="submit">Add to Cart</button>
+                </form>
             </div>
             <div class="product">
                 <img src="/images/product2.png" alt="box-code bit">
@@ -63,7 +66,10 @@
                 <p>Box-Code Bit, teman ngemil di mana saja! Cookies dalam kotak praktis yang siap mengguncang harimu
                     dengan kelezatan.</p>
                 <p>Rp32.000</p>
-                <button>Add to Cart</button>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="productId" value="product2">
+                    <button type="submit">Add to Cart</button>
+                </form>
             </div>
             <div class="product">
                 <img src="/images/product3.png" alt="4-code premium bit">
