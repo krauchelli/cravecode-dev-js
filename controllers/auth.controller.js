@@ -76,7 +76,16 @@ const loginController = async (req, res) => {
 };
 
 const logoutController = async (req, res) => {
-    
+    try {
+        await req.session.destroy();
+        res.clearCookie('connect.sid');
+        return res.redirect('/');
+    } catch (err) {
+        return res.status(500).json({
+            title: 'Error occured when logging out',
+            message: err.message
+        });
+    }
 };
 
 // export
