@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CraveCode Bakery</title>
     <link rel="stylesheet" href="/styles/style-landing.css">
+    <script src="/scripts/scripts.js" defer></script>
 </head>
 
 <body>
@@ -44,25 +45,6 @@
         </table>
         </div>
     </header>
-
-    <!-- nanda ini login-->
-
-    <!-- nanda ini regis-->
-    <div class="popup-regis" id="regis-popup">
-        <div class="popup-content-regis">
-            <span class="close" onclick="closeRegis(); closeLogin()">&times;</span>
-            <h2>Register</h2>
-            <form>
-                <input type="text" id="username" name="username" placeholder="Username">
-                <input type="text" id="email" name="email" placeholder="Email">
-                <input type="text" id="phone" name="phone number" placeholder="Phone">
-                <input type="password" id="password" name="password" placeholder="Password">
-                <button class="button-login" type="submit">Submit</button>
-                <a class="register-klik">Already have an account?<a href="#login" onclick="closeRegis()">Login</a></a>
-            </form>
-        </div>
-    </div>
-
 
     <section id="cart" class="best-sellers">
         <h2>CRAVECODE BEST SELLERS</h2>
@@ -197,7 +179,6 @@
 
     <%- include("partials/footer") %>
 
-    <script src="/scripts/scripts.js"></script>
 </body>
 
 </html>

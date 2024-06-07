@@ -19,8 +19,10 @@
     </a> -->
 
     <!-- logout-->
-    <a href="/home" class="sidebar-item" onclick="confirmLogout(event)">
-        <img src="images/Logout.png" alt="Logout" class="icon2">
-        <span class="text2">Logout</span>
-    </a>
+    <form action="/logout" method="POST" class="sidebar-item-logout">
+        <button type="submit">
+            <img src="images/Logout.png" alt="Logout" class="icon2">
+            <span class="text2">Logout</span>
+        </button>
+    </form>
 </div>
