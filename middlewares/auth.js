@@ -13,4 +13,19 @@ const auth = async (req, res, next) => {
     }
 };
 
-module.exports = auth;
+const redirectIfAuthenticated = async (req, res, next) => {
+    try {
+        if (req.session.user) {
+            return res.redirect('/');
+        }
+        next();
+    }
+    catch (error) {
+        return res.status(500).json({ 
+            title: 'Error occured when checking user authentication',
+            message: error.message 
+        });
+    }
+};
+
+ module.exports = { auth, redirectIfAuthenticated };
