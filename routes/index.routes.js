@@ -35,5 +35,6 @@ router.get('/completed', async (req, res) => {
 // kumpulan post
 router.post('/register', controllers.registerController);
 router.post ('/login', controllers.loginController);
+router.post('/logout', controllers.logoutController);
 
 module.exports = router;
