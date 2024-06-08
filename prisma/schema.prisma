@@ -62,9 +62,10 @@ model OrderItem {
 
 
 model Product {
-  id    String @id @default(uuid()) @unique
-  name  String
-  price Float
-  carts CartItem[]
-  orders OrderItem[]
+  id        String @id @default(uuid()) @unique
+  name      String
+  price     Float
+  imagePath String?  
+  carts     CartItem[]
+  orders    OrderItem[]
 }
