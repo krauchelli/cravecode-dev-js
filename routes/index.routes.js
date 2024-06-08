@@ -20,9 +20,8 @@ router.get('/register', redirectIfAuthenticated, async (req, res) => {
 
 router.get('/profile', auth, controllers.getUser);
 
-router.get('/shop', async (req, res) => {
-    res.render('shop');
-});
+router.get('/shop', auth, controllers.getAllCart);
+ router.get('/cart', auth, controllers.getAllCart); // not finished
 
 router.get('/inprocess', async (req, res) => {
     res.render('inprocess');
@@ -36,5 +35,6 @@ router.get('/completed', async (req, res) => {
 router.post('/register', controllers.registerController);
 router.post ('/login', controllers.loginController);
 router.post('/logout', controllers.logoutController);
+router.post('/add-to-cart', auth, controllers.addToCart); // not finished
 
 module.exports = router;
