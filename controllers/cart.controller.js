@@ -7,14 +7,33 @@ const prisma = new PrismaClient();
 
 // get all cart
 const getAllCart = async (req, res) => {
-    const carts = await prisma.cart.findMany({
-        include: {
-            user: true,
-            product: true,
-        },
-    });
+    try {
+        const session = req.session.user; // Assuming the session user is the user's ID
 
-    res.render('cart', { carts });
+        const cart = await prisma.cart.findFirst({
+            where: {
+                userId: session
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
+        // cart.items.forEach((item) => {
+        //     console.log(item.product.imagePath);
+        // });
+        return res.render('shop', { cart });
+        //return res.json(cart);
+    } catch (error) {
+        return res.status(500).json({ 
+            title: 'Error occured when getting cart',
+            message: error.message 
+        });
+    
+    }
 };
 
 // add to cart
