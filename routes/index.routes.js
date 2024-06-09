@@ -23,18 +23,17 @@ router.get('/profile', auth, controllers.getUser);
 router.get('/shop', auth, controllers.getAllCart);
  router.get('/cart', auth, controllers.getAllCart); // not finished
 
-router.get('/inprocess', async (req, res) => {
-    res.render('inprocess');
-});
+router.get('/inprocess', auth, controllers.getAllProcess); // not finished
 
-router.get('/completed', async (req, res) => {
-    res.render('completed');
-});
+router.get('/completed', auth, controllers.getAllCompleted); // not finished
+// router.get('/orderList', auth, controllers.getAllOrder); // not finished
 
 // kumpulan post
 router.post('/register', controllers.registerController);
 router.post ('/login', controllers.loginController);
 router.post('/logout', controllers.logoutController);
 router.post('/add-to-cart', auth, controllers.addToCart); // not finished
+router.post('/add-to-process', auth, controllers.addToProcess); // not finished
+router.post('/completed', auth, controllers.addToCompleted); // not finished
 
 module.exports = router;
