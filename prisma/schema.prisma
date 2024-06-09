@@ -20,14 +20,23 @@ model User {
   phoneNumber String?
   password   String
   carts         Cart[]
-  orders        Order[]
+}
+
+enum OrderStatus {
+  CART
+  PROCESSED
+  COMPLETED
 }
 
 model Cart {
   id        String @id @default(uuid()) @unique
   userId    String
+  payMethodId String
+  total     Float @default(0)
+  status    OrderStatus @default(CART)
   createdAt DateTime @default(now())
   user      User @relation(fields: [userId], references: [id])
+  payMethod PayMethod @relation(fields: [payMethodId], references: [id])
   items     CartItem[]
 }
 
@@ -41,25 +50,32 @@ model CartItem {
   product   Product @relation(fields: [productId], references: [id])
 }
 
-model Order {
-  id        String @id @default(uuid()) @unique
-  userId    String
-  total     Float
-  createdAt DateTime @default(now())
-  user      User @relation(fields: [userId], references: [id])
-  items     OrderItem[]
-}
+// model Order {
+//   id          String @id @default(uuid()) @unique
+//   userId      String
+//   payMethodId String
+//   total       Float
+//   createdAt   DateTime @default(now())
+//   user        User @relation(fields: [userId], references: [id])
+//   payMethod   PayMethod @relation(fields: [payMethodId], references: [id])
+//   items       OrderItem[]
+// }
 
-model OrderItem {
-  id        String @id @default(uuid()) @unique
-  orderId   String
-  productId String
-  quantity  Int
-  createdAt DateTime @default(now())
-  order     Order @relation(fields: [orderId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
-}
+// model OrderItem {
+//   id        String @id @default(uuid()) @unique
+//   orderId   String
+//   productId String
+//   quantity  Int
+//   createdAt DateTime @default(now())
+//   order     Order @relation(fields: [orderId], references: [id])
+//   product   Product @relation(fields: [productId], references: [id])
+// }
 
+model PayMethod {
+  id        String @id @default(uuid()) @unique
+  name      String
+  carts     Cart[]
+}
 
 model Product {
   id        String @id @default(uuid()) @unique
@@ -67,5 +83,4 @@ model Product {
   price     Float
   imagePath String?  
   carts     CartItem[]
-  orders    OrderItem[]
 }
