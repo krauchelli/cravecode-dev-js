@@ -22,11 +22,29 @@ const getAllCart = async (req, res) => {
                 }
             }
         });
-        // cart.items.forEach((item) => {
-        //     console.log(item.product.imagePath);
-        // });
-        return res.render('shop', { cart });
-        //return res.json(cart);
+
+        if (!cart) {
+            return res.redirect('/');
+        }
+
+        switch (cart.status) {
+            case 'CART':
+                let subtotal = 0;
+                cart.items.forEach((item) => {
+                    subtotal += item.product.price * item.quantity;
+                });
+                console.log(`subtotal: ${subtotal}`);
+                return res.render('shop', { cart, subtotal });
+
+            case 'PROCESSED':
+                return res.redirect('/inprocess');
+
+            case 'COMPLETED':
+                return res.redirect('/completed');
+
+            default:
+                return res.status(400).json({ message: 'Invalid cart status' });
+        }
     } catch (error) {
         return res.status(500).json({ 
             title: 'Error occured when getting cart',
@@ -104,7 +122,187 @@ const addToCart = async (req, res) => {
     }
 };
 
+// melanjutkan cart ke process
+const addToProcess = async (req, res) => {
+    const session = req.session.user;
+    const { paymentMethod } = req.body;
+    console.log(req.body);
+    try {
+        // cari cart berdasarkan user id
+        const cart = await prisma.cart.findFirst({
+            where: {
+                userId: session
+            }
+        });
+
+        // cari payment method berdasarkan id
+        const payMethod = await prisma.payMethod.findUnique({
+            where: {
+                id: paymentMethod
+            }
+        });
+
+        // update cart dengan payment method dan update status enum
+        const updatedCart = await prisma.cart.update({
+            where: {
+                id: cart.id
+            },
+            data: {
+                payMethod: {
+                    connect: {
+                        id: payMethod.id
+                    }
+                },
+                status: 'PROCESSED'
+            }
+        });
+
+        // return res.redirect('/');
+        return res.json(updatedCart);
+
+    } catch (error) {
+        res.status(500).json({ 
+            title: 'Error occured when adding product to process',
+            message: error.message 
+        });
+    }
+};
+
+// mendapatkan semua daftar proses order yang telah dipindahkan dari cart
+const getAllProcess = async (req, res) => {
+    try {
+        const session = req.session.user;
+
+        //mengecek status cart yang sudah diubah menjadi processed, jika selain processed maka akan dikembalikan ke cart
+        const process = await prisma.cart.findFirst({
+            where: {
+                userId: session,
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
+
+        if (!process) {
+            return res.redirect('/shop');
+        }
+    
+        switch (process.status) {
+            case 'PROCESSED':
+                let subtotal = 0;
+                process.items.forEach((item) => {
+                    subtotal += item.product.price * item.quantity;
+                });
+                console.log(`subtotal: ${subtotal}`);
+                return res.render('inprocess', { process, subtotal });
+
+            case 'COMPLETED':
+                return res.redirect('/completed');
+
+            case 'CART':
+                return res.redirect('/shop');
+
+            default:
+                return res.status(400).json({ message: 'Invalid cart status' });
+        }
+    } catch (error) {
+        res.status(500).json({ 
+            title: 'Error occured when getting all process',
+            message: error.message 
+        });
+    }
+};
+
+// update status cart menjadi completed
+const addToCompleted = async (req, res) => {
+    try {
+        const session = req.session.user;
+        // cari cart berdasarkan user id
+        const cart = await prisma.cart.findFirst({
+            where: {
+                userId: session
+            }
+        });
+
+        // update cart dengan status enum menjadi completed
+        const updatedCart = await prisma.cart.update({
+            where: {
+                id: cart.id
+            },
+            data: {
+                status: 'COMPLETED'
+            }
+        });
+
+        // return res.redirect('/');
+        return res.json(updatedCart);
+    } catch (error) {
+        res.status(500).json({ 
+            title: 'Error occured when adding product to process',
+            message: error.message 
+        });
+    }  
+};
+
+// mendapatkan semua daftar order yang telah selesai
+const getAllCompleted = async (req, res) => {
+    try {
+        const session = req.session.user;
+
+        // Check the status of the cart
+        const completed = await prisma.cart.findFirst({
+            where: {
+                userId: session
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
+
+        if (!completed) {
+            // Handle case when no cart is found
+            return res.status(404).json({ message: 'No cart found' });
+        }
+
+        switch (completed.status) {
+            case 'COMPLETED':
+                let subtotal = 0;
+                completed.items.forEach((item) => {
+                    subtotal += item.product.price * item.quantity;
+                });
+                console.log(`subtotal: ${subtotal}`);
+                return res.render('completed', { completed, subtotal });
+
+            case 'PROCESSED':
+                return res.redirect('/inprocess');
+
+            case 'CART':
+                return res.redirect('/shop');
+
+            default:
+                // Handle case when status is none of the above
+                return res.status(400).json({ message: 'Invalid cart status' });
+        }
+    } catch (error) {
+        res.status(500).json({
+            title: 'Error occured when getting all completed',
+            message: error.message 
+        });
+    }
+}
 module.exports = {
     getAllCart,
     addToCart,
+    addToProcess, 
+    getAllProcess,
+    addToCompleted,
+    getAllCompleted
 };
