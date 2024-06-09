@@ -31,6 +31,26 @@ const registerController = async (req, res) => {
             }
         });
 
+        const defaultPayMethod = await prisma.payMethod.findFirst();
+        if (!defaultPayMethod) {
+            throw new Error('Default payment method not found');
+        }
+
+        const newCart = await prisma.cart.create({
+            data: {
+                payMethod: {
+                    connect: {
+                        id: defaultPayMethod.id
+                    }
+                },
+                user: {
+                    connect: {
+                        id: newUser.id
+                    }
+                }
+            }
+        });
+
         return res.redirect('/login');
 
     } catch (error) {
