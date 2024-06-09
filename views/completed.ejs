@@ -17,36 +17,6 @@
 
     <%- include("partials/section-nav") %>
 
-    <!-- nanda ini login-->
-    <div class="popup" id="login-popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeLogin()">&times;</span>
-            <h2>Login</h2>
-            <form>
-                <input type="text" id="username" name="username" placeholder="Username">
-                <input type="password" id="password" name="password" placeholder="Password">
-                <button class="button-login" type="submit">Login</button>
-                <a class="register-klik">Don't have account?<a href="#register" onclick="regisShow()">Register</a></a>
-            </form>
-        </div>
-    </div>
-
-    <!-- nanda ini regis-->
-    <div class="popup-regis" id="regis-popup">
-        <div class="popup-content-regis">
-            <span class="close" onclick="closeRegis(); closeLogin()">&times;</span>
-            <h2>Register</h2>
-            <form>
-                <input type="text" id="username" name="username" placeholder="Username">
-                <input type="text" id="email" name="email" placeholder="Email">
-                <input type="text" id="phone" name="phone number" placeholder="Phone">
-                <input type="password" id="password" name="password" placeholder="Password">
-                <button class="button-login" type="submit">Submit</button>
-                <a class="register-klik">Already have an account?<a href="#login" onclick="closeRegis()">Login</a></a>
-            </form>
-        </div>
-    </div>
-
     <main>
         <div class="order-card">
             <div class="items">
@@ -64,9 +34,18 @@
                         <p class="order-price">Rp56.000</p>
                     </div>
                 </div>
+                <% completed.items.forEach(item => { %>
+                    <div class="order-item">
+                        <img src="<%= item.product.imagePath %>" alt="Product Image">
+                        <div class="order-info">
+                            <p class="order-title"><%= item.product.name %> x<%= item.quantity %></p>
+                            <p class="order-price">Rp<%= item.product.price %></p>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
 
-            <div class="total">Rp175.000</div>
+            <div class="total">Rp <%= subtotal %></div>
             <div class="status">Selesai</div>
         </div>
     </main>

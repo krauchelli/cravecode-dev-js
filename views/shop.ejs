@@ -85,38 +85,42 @@
             <div class="summary-details">
                 <div class="subtotal">
                     <span>Subtotal</span>
-                    <span>Rp56.000</span>
+                    <span><%= subtotal %></span>
                 </div>
-                <div class="shipping">
-                    <span>Pilih Pengiriman</span>
-                    <select>
-                        <option value="gopay">SELECT</option>
-                        <option value="gosend">GO-SEND</option>
-                        <option value="jne">JNE</option>
-                        <option value="jnt">JNT</option>
-                        <option value="sicepat">SICEPAT</option>
-                        <option value="wahana">WAHANA</option>
-                    </select>
+                <form method="POST" action="/add-to-process">
+                    <div class="shipping">
+                        <span>Pilih Pengiriman</span>
+                        <select>
+                            <option value="gopay">SELECT</option>
+                            <option value="gosend">GO-SEND</option>
+                            <option value="jne">JNE</option>
+                            <option value="jnt">JNT</option>
+                            <option value="sicepat">SICEPAT</option>
+                            <option value="wahana">WAHANA</option>
+                        </select>
+                    </div>
+                    <div class="payment-method">
+                        <span>Metode Pembayaran</span>
+                        <select name="paymentMethod">
+                            <option value="">SELECT</option>
+                            <option value="method1">GO-PAY</option>
+                            <option value="method2">DANA</option>
+                            <option value="method3">OVO</option>
+                            <option value="method4">LINKAJA</option>
+                            <option value="method5">SHOPEEPAY</option>
+                            <option value="method6">BANK TRANSFER</option>
+                        </select>
+                    </div>
+                    <div class="total">
+                        <span>Total</span>
+                        <!-- nanda -->
+                        <span>Rp56.000</span>
+                    </div>
                 </div>
-                <div class="payment-method">
-                    <span>Metode Pembayaran</span>
-                    <select>
-                        <option value="gopay">SELECT</option>
-                        <option value="gopay">GO-PAY</option>
-                        <option value="dana">DANA</option>
-                        <option value="ovo">OVO</option>
-                        <option value="shopeepay">SHOPEEPAY</option>
-                    </select>
-                </div>
-                <div class="total">
-                    <span>Total</span>
-                    <!-- nanda -->
-                    <span>Rp56.000</span>
-                </div>
-            </div>
-            <button class="checkout" onclick="ShowQR()">CHECKOUT</button>
-            <!-- nanda mau checkout tapi customer belum loin-->
-            <button class="checkout2" onclick="loginShow()">CHECKOUT</button>
+                <button class="checkout" onclick="ShowQR()">CHECKOUT</button>
+                <!-- nanda mau checkout tapi customer belum loin-->
+                <button class="checkout2">CHECKOUT</button>
+            </form>
         </div>
     </section>
 
