@@ -1,5 +1,5 @@
 //test alert, remove this later
-alert("Script is working!");
+//alert("Script is working!");
 
 document.addEventListener('DOMContentLoaded', () => {
     const questions = document.querySelectorAll('.faq .question');
