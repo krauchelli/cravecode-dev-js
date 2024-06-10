@@ -1,6 +1,6 @@
 const { getAllUser, getUser } = require('./user.controller');
 const { registerController, loginController, logoutController } = require('./auth.controller');
-const { addToCart, getAllCart, addToProcess, getAllProcess, addToCompleted, getAllCompleted } = require('./cart.controller');
+const { addToCart, getAllCart, addToProcess, getAllProcess, addToCompleted, getAllCompleted, emptyCart, updateCart } = require('./cart.controller');
 
 const controllers = {
     getAllUser,
@@ -13,7 +13,9 @@ const controllers = {
     addToProcess,
     getAllProcess,
     addToCompleted,
-    getAllCompleted
+    getAllCompleted,
+    emptyCart,
+    updateCart
 };
 
 module.exports = controllers;
