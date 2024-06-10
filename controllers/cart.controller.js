@@ -34,6 +34,7 @@ const getAllCart = async (req, res) => {
                     subtotal += item.product.price * item.quantity;
                 });
                 console.log(`subtotal: ${subtotal}`);
+                console.log(cart.items)
                 return res.render('shop', { cart, subtotal });
 
             case 'PROCESSED':
@@ -84,8 +85,14 @@ const addToCart = async (req, res) => {
         });
         // If the user doesn't have a cart, create one
         if (!cart) {
+            const defaultPayMethod = await prisma.payMethod.findFirst();
             const newCart = await prisma.cart.create({
                 data: {
+                    payMethod: {
+                        connect: {
+                            id: defaultPayMethod.id
+                        }
+                    },
                     user: {
                         connect: {
                             id: user.id
@@ -117,6 +124,41 @@ const addToCart = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ 
             title: 'Error occured when adding product to cart',
+            message: error.message 
+        });
+    }
+};
+
+// mengubah jumlah item di cart
+const updateCart = async (req, res) => {
+    try {
+        const { cartId, quantity } = req.body;
+        console.log(`cartId: ${cartId}, quantity: ${quantity}`);
+    
+        // Find the cartItem using the cartId
+        const cart = await prisma.cart.findUnique({
+            where: {
+                id: cartId
+            }
+        });
+        console.log(`cart: ${cart}`);
+    
+        // Update the quantity of the cartItem
+        const updatedCart = await prisma.cart.update({
+            where: {
+                id: cart.id
+            },
+            data: {
+                quantity: quantity
+            }
+        });
+    
+        // Return the updated cart item
+        return res.redirect('/shop');
+    }
+    catch (error) {
+        res.status(500).json({ 
+            title: 'Error occured when updating cart',
             message: error.message 
         });
     }
@@ -298,11 +340,85 @@ const getAllCompleted = async (req, res) => {
         });
     }
 }
+
+// kosongkan isi cartitem dan reset status ke 'cart' ketika cart sudah completed
+const emptyCart = async (req, res) => {
+    try {
+        const session = req.session.user;
+        // cari cart berdasarkan user id
+        const cart = await prisma.cart.findFirst({
+            where: {
+                userId: session
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                },
+                user: true,
+                payMethod: true
+            }
+        });
+        
+        // memindahkan cart ke ordered sebelum dihapus
+        const order = await prisma.ordered.create({
+            data: {
+                user: {
+                    connect: {
+                        id: cart.userId
+                    }
+                },
+                payMethod: {
+                    connect: {
+                        id: cart.payMethodId
+                    }
+                },
+                total: cart.total,
+                status: cart.status,
+                createdAt: cart.createdAt,
+                items: {
+                    create: cart.items.map(item => ({
+                        productId: item.productId,
+                        quantity: item.quantity,
+                    }))
+                }
+            }
+        });
+
+        // hapus cartItem berdasarkan cart id
+        const deletedCartItem = await prisma.cartItem.deleteMany({
+            where: {
+                cartId: cart.id
+            }
+        });
+
+        // update status cart menjadi 'cart'
+        const updatedCart = await prisma.cart.update({
+            where: {
+                id: cart.id
+            },
+            data: {
+                status: 'CART'
+            }
+        });
+
+        return res.redirect('/');
+    } catch (error) {
+        res.status(500).json({
+            title: 'Error occured when emptying cart',
+            message: error.message 
+        });
+    }
+};
+
 module.exports = {
     getAllCart,
     addToCart,
     addToProcess, 
     getAllProcess,
     addToCompleted,
-    getAllCompleted
+    getAllCompleted,
+    emptyCart,
+    updateCart
 };
