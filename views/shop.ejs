@@ -15,59 +15,14 @@
 
     <%- include("partials/section-nav") %>
 
-    <!-- nanda ini login-->
-    <div class="popup" id="login-popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeLogin()">&times;</span>
-            <h2>Login</h2>
-            <form>
-                <input type="text" id="username" name="username" placeholder="Username">
-                <input type="password" id="password" name="password" placeholder="Password">
-                <button class="button-login" type="submit">Login</button>
-                <a class="register-klik">Don't have account?<a href="#register" onclick="regisShow()">Register</a></a>
-            </form>
-        </div>
-    </div>
-
-    <!-- nanda ini regis-->
-    <div class="popup-regis" id="regis-popup">
-        <div class="popup-content-regis">
-            <span class="close" onclick="closeRegis(); closeLogin()">&times;</span>
-            <h2>Register</h2>
-            <form>
-                <input type="text" id="username" name="username" placeholder="Username">
-                <input type="text" id="email" name="email" placeholder="Email">
-                <input type="text" id="phone" name="phone number" placeholder="Phone">
-                <input type="password" id="password" name="password" placeholder="Password">
-                <button class="button-login" type="submit">Submit</button>
-                <a class="register-klik">Already have an account?<a href="#login" onclick="closeRegis()">Login</a></a>
-            </form>
-        </div>
-    </div>
-
     <section class="keranjang">
-        <div class="items">
-            <!-- nanda //ISI PRODUK YANG DIMASUKAN KERANJANG, loop sesuai jumlah data dalam keranjang-->
-            <div class="item">
-                <img src="images/product1.png" alt="produk-keranjang">
-                <div class="details">
-                    <span class="item-name">4-code premium bit</span>
-                    <span class="item-price">Rp56.000</span>
-                </div>
-                <div class="quantity">
-                    <!-- nanda //sesuaikan jumlah plus minus-->
-                    <button class="minus">-</button>
-                    <a>1</a>
-                    <button class="plus">+</button>
-                </div>
-            </div>
-        </div>
         <!-- dengan logika templating -->
         <div class="items">
         <% cart.items.forEach(item => { %>
             <div class="item">
                 <img src="<%= item.product.imagePath %>" alt="produk-keranjang">
                 <div class="details">
+                    <span class="item-id"><%= item.id %></span>
                     <span class="item-name"><%= item.product.name %></span>
                     <span class="item-price">Rp<%= item.product.price %></span>
                 </div>
@@ -114,7 +69,7 @@
                     <div class="total">
                         <span>Total</span>
                         <!-- nanda -->
-                        <span>Rp56.000</span>
+                        <span>Rp<%= subtotal %></span>
                     </div>
                 </div>
                 <button class="checkout" onclick="ShowQR()">CHECKOUT</button>
@@ -137,6 +92,53 @@
 
 
     <script src="scripts/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.plus').click(function() {
+            var cartId = $(this).parent().siblings('.details').find('.item-id').text();
+            var quantity = parseInt($(this).siblings('a').text()) + 1;
+            $(this).siblings('a').text(quantity);
+
+            $.ajax({
+                url: '/shop',
+                type: 'PUT',
+                data: {
+                    cartId: cartId,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $('.minus').click(function() {
+            var cartId = $(this).parent().siblings('.details').find('.item-id').text();
+            var quantity = parseInt($(this).siblings('a').text()) - 1;
+            if (quantity < 0) quantity = 0;
+            $(this).siblings('a').text(quantity);
+
+            $.ajax({
+                url: '/shop',
+                type: 'PUT',
+                data: {
+                    cartId: cartId,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>
