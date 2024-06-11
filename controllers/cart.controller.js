@@ -174,6 +174,29 @@ const addToProcess = async (req, res) => {
         const cart = await prisma.cart.findFirst({
             where: {
                 userId: session
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
+
+        // menambahkan nilai subtotal dari cart item ke total cart
+        let subtotal = 0;
+        cart.items.forEach((item) => {
+            subtotal += item.product.price * item.quantity;
+        });
+
+        // update total cart dengan subtotal
+        const updateTotal = await prisma.cart.update({
+            where: {
+                id: cart.id
+            },
+            data: {
+                total: subtotal
             }
         });
 
@@ -399,6 +422,7 @@ const emptyCart = async (req, res) => {
                 id: cart.id
             },
             data: {
+                total: 0,
                 status: 'CART'
             }
         });
