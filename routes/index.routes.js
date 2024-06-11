@@ -29,9 +29,9 @@ router.post('/logout', controllers.logoutController);
 router.post('/add-to-cart', auth, controllers.addToCart); // not finished
 router.post('/inprocess', auth, controllers.addToProcess); // not finished
 router.post('/completed', auth, controllers.addToCompleted); // not finished
+router.post('/updateCart', auth, controllers.updateCart); // not finished
 
 // kumpulan put
-router.put('/shop', auth, controllers.updateCart); // not finished
 
 // kumpulan delete
 router.delete('/shop', auth, controllers.emptyCart); // not finished
