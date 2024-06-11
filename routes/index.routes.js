@@ -27,7 +27,7 @@ router.post('/register', controllers.registerController);
 router.post ('/login', controllers.loginController);
 router.post('/logout', controllers.logoutController);
 router.post('/add-to-cart', auth, controllers.addToCart); // not finished
-router.post('/add-to-process', auth, controllers.addToProcess); // not finished
+router.post('/inprocess', auth, controllers.addToProcess); // not finished
 router.post('/completed', auth, controllers.addToCompleted); // not finished
 
 // kumpulan put
