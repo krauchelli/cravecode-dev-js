@@ -67,9 +67,22 @@ function closeRegis() {
 
 function confirmLogout(event) {
     var userConfirmed = confirm("Are you sure you want to logout?");
-    if (!userConfirmed) {
-        event.preventDefault(); // Mencegah navigasi jika pengguna membatalkan
+    if (userConfirmed) {
+        fetch('/logout', {
+            method: 'POST',
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // If the logout was successful, redirect to the home page
+            window.location.href = '/';
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
     }
+    event.preventDefault(); // Prevent navigation regardless of confirmation
 }
 
 
