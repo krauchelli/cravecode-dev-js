@@ -136,7 +136,7 @@ const updateCart = async (req, res) => {
         console.log(`cartId: ${cartId}, quantity: ${quantity}`);
     
         // Find the cartItem using the cartId
-        const cart = await prisma.cart.findUnique({
+        const cart = await prisma.cartItem.findFirst({
             where: {
                 id: cartId
             }
@@ -144,12 +144,12 @@ const updateCart = async (req, res) => {
         console.log(`cart: ${cart}`);
     
         // Update the quantity of the cartItem
-        const updatedCart = await prisma.cart.update({
+        const updatedCart = await prisma.cartItem.update({
             where: {
                 id: cart.id
             },
             data: {
-                quantity: quantity
+                quantity: parseInt(quantity, 10)
             }
         });
     
