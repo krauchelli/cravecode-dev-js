@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+
+    <div class="user-container">
+        <h3>User</h3>
+        <form action="/dashboard/user" method="GET">
+            <button type="submit">Get it!</button>
+        </form>
+    </div>
+    <div class="cart-container">
+        <h3>Cart</h3>
+        <form action="/dashboard/cart" method="GET">
+            <button type="submit">Get it!</button>
+        </form>
+    </div>
+    <div class="order-container">
+        <h3>Orders</h3>
+        <form action="/dashboard/order" method="GET">
+            <button type="submit">Get it!</button>
+        </form>
+    </div>
+    <div class="product-container">
+        <h3>Products</h3>
+        <form action="/dashboard/product" method="GET">
+            <button type="submit">Get it!</button>
+        </form>
+    </div>
+    <div class="payMethod-container">
+        <h3>Payment Methods</h3>
+        <form action="/dashboard/paymethod" method="GET">
+            <button type="submit">Get it!</button>
+        </form>
+    </div>
+</body>
+</html>
