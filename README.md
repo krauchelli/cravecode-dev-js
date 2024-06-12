@@ -63,22 +63,21 @@ For more information on the importance of a professional README for your reposit
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [CraveCode Bakery] <a name="about-project"></a>
+# 📖 CraveCode Bakery <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
-
-**[CraveCode Bakery]** is a web project developed as a final exam for our web development subject.
+**CraveCode Bakery** is a web project developed as a final exam for our web development subject.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Describe the tech stack and include only the relevant sections that apply to your project.
+In this project, we are using Express.js as the backbone, which supports the backend operations of this website. EJS assists as the templating engine for the frontend, ensuring the dynamic web processing. For the database configurations, we are using MySQL client database that helped by Prisma that serves as the conduit. Lastly, bcrypt are used for authentication processing and session management.  
 
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="">HTML</a></li>
+    <li><a href="">CSS</a></li>
   </ul>
 </details>
 
