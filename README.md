@@ -135,7 +135,7 @@ In this project, we are using Express.js as the backbone, which supports the bac
 
 > Add a link to your deployed project.
 
-- [Live Demo Link](https://google.com)
+- [Coming Soon!](https://github.com/krauchelli/cravecode-dev-js/tree/main)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
