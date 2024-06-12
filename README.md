@@ -159,10 +159,10 @@ git clone https://github.com/krauchelli/cravecode-dev-js.git
 Install this project with:
 
 ```sh
-  cd cravecode-dev-js
-  npm i
-  npx prisma migrate dev
-  npx prisma migrate reset
+cd cravecode-dev-js
+npm i
+npx prisma migrate dev
+npx prisma migrate reset
 ```
 ! Please take this as an example initialization of project that is using prisma as the conduit for MySQL database.
 
@@ -171,7 +171,7 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-  npm run dev
+npm run dev
 ```
 
 ### Run tests
