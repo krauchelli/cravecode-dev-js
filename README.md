@@ -65,7 +65,7 @@ For more information on the importance of a professional README for your reposit
 
 # 📖 CraveCode Bakery <a name="about-project"></a>
 
-**CraveCode Bakery** is a web project developed as a final exam for our web development subject.
+**CraveCode Bakery** is a dynamic web application designed for a cookie shop. It features a simple transaction system with separate cart and order tables. The project is developed as a final exam for our web development subject.
 
 ## 🛠 Built With <a name="built-with"></a>
 
