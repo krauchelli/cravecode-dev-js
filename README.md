@@ -123,17 +123,17 @@ In this project, we are using Express.js as the backbone, which supports the bac
 
 > Describe between 1-3 key features of the application.
 
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- **Dynamic Navigation**: Dynamic navigation system that adjusts based on user's interactions.
+- **Simple Design**: Only uses standard HTML and CSS for styling, keeping the design simple and easy to understand.
+- **Structured Folder**: Organized folder structure, easy to navigate between different use-case.
+- **Structured Database Schema**: Well-structured database schema, ensuring efficient data management.
+- **Simple and Easy to Read Session and Authentication Implementation**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-
-> Add a link to your deployed project.
 
 - [Coming Soon!](https://github.com/krauchelli/cravecode-dev-js/tree/main)
 
