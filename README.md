@@ -193,20 +193,12 @@ Coming Soon!
 👤 **Muhammad Dwi Ananda**
 
 - GitHub: [@krauchelli](https://github.com/krauchelli)
-- Twitter: [@twitterhandle](https://x.com/kraunanda)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/muhammad-dwi-ananda-b97797246/)
+- Twitter: [@kraunanda](https://x.com/kraunanda)
+- LinkedIn: [@Dwi](https://www.linkedin.com/in/muhammad-dwi-ananda-b97797246/)
 
 👤 **Dini Rahmawati**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
 👤 **Ladya Kusuma**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
