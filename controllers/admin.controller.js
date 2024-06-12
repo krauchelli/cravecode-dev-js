@@ -22,7 +22,7 @@ const showUser = async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: {
-                id: parseInt(id)
+                id
             }
         });
         res.status(200).json(user);
@@ -36,7 +36,15 @@ const showUser = async (req, res) => {
 // mendapatkan seluruh data cart
 const showAllCart = async (req, res) => {
     try {
-        const carts = await prisma.cart.findMany();
+        const carts = await prisma.cart.findMany({
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
         res.status(200).json(carts);
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
@@ -49,7 +57,7 @@ const showCart = async (req, res) => {
     try {
         const cart = await prisma.cart.findUnique({
             where: {
-                id: parseInt(id)
+                id
             }
         });
         res.status(200).json(cart);
@@ -62,7 +70,15 @@ const showCart = async (req, res) => {
 // mendapatkan seluruh data order
 const showAllOrder = async (req, res) => {
     try {
-        const orders = await prisma.ordered.findMany();
+        const orders = await prisma.ordered.findMany({
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
+            }
+        });
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
@@ -75,7 +91,14 @@ const showOrder = async (req, res) => {
     try {
         const order = await prisma.ordered.findUnique({
             where: {
-                id: parseInt(id)
+                id
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                }
             }
         });
         res.status(200).json(order);
@@ -88,7 +111,12 @@ const showOrder = async (req, res) => {
 // mendapatkan seluruh data product
 const showAllProduct = async (req, res) => {
     try {
-        const products = await prisma.product.findMany();
+        const products = await prisma.product.findMany({
+            include: {
+                carts: true,
+                ordereds: true
+            }
+        });
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
@@ -101,7 +129,11 @@ const showProduct = async (req, res) => {
     try {
         const product = await prisma.product.findUnique({
             where: {
-                id: parseInt(id)
+                id
+            },
+            include: {
+                carts: true,
+                ordereds: true
             }
         });
         res.status(200).json(product);
@@ -127,7 +159,7 @@ const showPayMethod = async (req, res) => {
     try {
         const payMethod = await prisma.payMethod.findUnique({
             where: {
-                id: parseInt(id)
+                id
             }
         });
         res.status(200).json(payMethod);
