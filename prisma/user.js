@@ -3,10 +3,11 @@ const saltRounds = 10;
 //collection of random user data
 const user = [
     {
-        username: 'krauchi',
-        email: 'twiburtra@random.com',
-        password: 'krauchelli123',
-        phoneNumber: '1234567890'
+        username: 'admin',
+        email: 'admin@random.com',
+        password: 'admin',
+        phoneNumber: '1234567890',
+        role: 'ADMIN'
     },
     {
         username: 'GitHubCopilot',
