@@ -10,7 +10,8 @@ const prisma = new PrismaClient();
 const showAllUser = async (req, res) => {
     try {
         const users = await prisma.user.findMany();
-        res.status(200).json(users);
+        console.log(users);
+        res.render('admin/dashboard-user', { users });
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
     }
@@ -38,6 +39,7 @@ const showAllCart = async (req, res) => {
     try {
         const carts = await prisma.cart.findMany({
             include: {
+                user: true,
                 items: {
                     include: {
                         product: true
@@ -45,7 +47,8 @@ const showAllCart = async (req, res) => {
                 }
             }
         });
-        res.status(200).json(carts);
+        console.log(carts);
+        res.render('admin/dashboard-cart', { carts });
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
     }
