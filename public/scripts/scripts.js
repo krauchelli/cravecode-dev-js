@@ -94,5 +94,7 @@ function ShowQR() {
 function closeQR() {
     var loginPopup = document.getElementById('qr-popup');
     loginPopup.style.display = 'none';
+    // memanggil button checkout
+    $('#checkoutTrigger').click();
 }
 
