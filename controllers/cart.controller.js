@@ -222,8 +222,7 @@ const addToProcess = async (req, res) => {
             }
         });
 
-        // return res.redirect('/');
-        return res.json(updatedCart);
+        return res.redirect('/inprocess');
 
     } catch (error) {
         res.status(500).json({ 
@@ -303,8 +302,7 @@ const addToCompleted = async (req, res) => {
             }
         });
 
-        // return res.redirect('/');
-        return res.json(updatedCart);
+        return res.redirect('/completed');
     } catch (error) {
         res.status(500).json({ 
             title: 'Error occured when adding product to process',
