@@ -57,7 +57,7 @@
                 <p>Rp12.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product1">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
             <div class="product">
@@ -68,7 +68,7 @@
                 <p>Rp32.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product2">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
             <div class="product">
@@ -79,7 +79,7 @@
                 <p>Rp56.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product3">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
         </div>
@@ -95,7 +95,7 @@
                 <p>Rp60.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product4">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
             <div class="product">
@@ -105,8 +105,8 @@
                 <p>Rp39.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product5">
-                    <button type="submit">Add to Cart</button>
-                </form>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
+                </form> 
             </div>
             <div class="product">
                 <img src="/images/product6.png" alt="all-code gift hampers">
@@ -116,7 +116,7 @@
                 <p>Rp84.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product6">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
         </div>
@@ -130,7 +130,7 @@
                 <p>Rp12.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product1">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
             <div class="product">
@@ -141,7 +141,7 @@
                 <p>Rp32.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product2">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
             <div class="product">
@@ -152,7 +152,7 @@
                 <p>Rp56.000</p>
                 <form method="POST" action="/add-to-cart">
                     <input type="hidden" name="productId" value="product3">
-                    <button type="submit">Add to Cart</button>
+                    <button id="addToCartButton" type="submit">Add to Cart</button>
                 </form>
             </div>
         </div>
@@ -206,6 +206,14 @@
 
     <%- include("partials/footer") %>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    $("#addToCartButton").click(function(){
+        alert("Product successfully added to cart!");
+    });
+    });
+    </script>
 </body>
 
 </html>
