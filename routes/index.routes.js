@@ -16,7 +16,7 @@ router.get('/register', redirectIfAuthenticated, async (req, res) => {
     res.render('register');
 });
 router.get('/dashboard', auth, checkUserRole, async (req, res) => {
-    res.render('dashboard');
+    res.render('admin/dashboard');
 });
 router.get('/profile', auth, controllers.getUser);
 router.get('/shop', auth, controllers.getAllCart);
