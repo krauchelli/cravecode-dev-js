@@ -207,6 +207,11 @@ const addToProcess = async (req, res) => {
             }
         });
 
+        // jika total masih 0 maka akan dikembalikan ke cart
+        if (subtotal === 0) {
+            return res.redirect('/shop');
+        }
+
         // update cart dengan payment method dan update status enum
         const updatedCart = await prisma.cart.update({
             where: {
