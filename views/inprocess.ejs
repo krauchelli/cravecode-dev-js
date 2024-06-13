@@ -32,7 +32,7 @@
                         <img src="<%= item.product.imagePath %>" alt="Product Image">
                         <div class="order-info">
                             <p class="order-title"><%= item.product.name %> x<%= item.quantity %></p>
-                            <p class="order-price">Rp<%= item.product.price %></p>
+                            <p class="order-price">Rp<%= item.product.price*item.quantity %></p>
                         </div>
                     </div>
                 <% }) %>
