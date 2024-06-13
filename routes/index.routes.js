@@ -20,11 +20,9 @@ router.get('/dashboard', auth, checkUserRole, async (req, res) => {
 });
 router.get('/profile', auth, controllers.getUser);
 router.get('/shop', auth, controllers.getAllCart);
-router.get('/cart', auth, controllers.getAllCart); // not finished
-router.get('/inprocess', auth, controllers.getAllProcess); // not finished
-router.get('/completed', auth, controllers.getAllCompleted); // not finished
-// router.get('/orderList', auth, controllers.getAllOrder); // not finished
-
+router.get('/cart', auth, controllers.getAllCart);
+router.get('/inprocess', auth, controllers.getAllProcess);
+router.get('/completed', auth, controllers.getAllCompleted);
 // penggunaan untuk admin
 router.get('/dashboard/user', auth, checkUserRole, controllers.showAllUser);
 router.get('/dashboard/user/:id', auth, checkUserRole, controllers.showUser);
@@ -41,14 +39,12 @@ router.get('/dashboard/paymethod/:id', auth, checkUserRole, controllers.showPayM
 router.post('/register', controllers.registerController);
 router.post ('/login', controllers.loginController);
 router.post('/logout', controllers.logoutController);
-router.post('/add-to-cart', auth, controllers.addToCart); // not finished
-router.post('/inprocess', auth, controllers.addToProcess); // not finished
-router.post('/completed', auth, controllers.addToCompleted); // not finished
-router.post('/updateCart', auth, controllers.updateCart); // not finished
-
-// kumpulan put
+router.post('/add-to-cart', auth, controllers.addToCart);
+router.post('/inprocess', auth, controllers.addToProcess);
+router.post('/completed', auth, controllers.addToCompleted);
+router.post('/updateCart', auth, controllers.updateCart);
 
 // kumpulan delete
-router.delete('/shop', auth, controllers.emptyCart); // not finished
+router.delete('/shop', auth, controllers.emptyCart);
 
 module.exports = router;
