@@ -134,7 +134,7 @@ In this project, we are using Express.js as the backbone, which supports the bac
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 For the live demo, we are using Vercel for a deployment.
-- [Click here!](https://cravecode-dev-6ye6b8cg9-krauchellis-projects.vercel.app/)
+- [Click here!](https://cravecode-dev-js.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
