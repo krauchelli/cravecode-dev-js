@@ -439,6 +439,38 @@ const emptyCart = async (req, res) => {
     }
 };
 
+// menampilkan semua cart yang sudah diorder
+const getAllOrdered = async (req, res) => {
+    try {
+        const session = req.session.user;
+
+        const ordered = await prisma.ordered.findMany({
+            where: {
+                userId: session
+            },
+            include: {
+                items: {
+                    include: {
+                        product: true
+                    }
+                },
+                payMethod: true
+            }
+        });
+
+        if (!ordered) {
+            return res.status(404).json({ message: 'No order found' });
+        }
+
+        return res.render('ordered', { ordered });
+    } catch (error) {
+        res.status(500).json({
+            title: 'Error occured when getting all ordered',
+            message: error.message 
+        });
+    }
+};
+
 module.exports = {
     getAllCart,
     addToCart,
@@ -447,5 +479,6 @@ module.exports = {
     addToCompleted,
     getAllCompleted,
     emptyCart,
-    updateCart
+    updateCart,
+    getAllOrdered
 };
