@@ -83,9 +83,9 @@ const loginController = async (req, res) => {
 
         // set session
         req.session.user = user.id;
-        console.log(req.session.user);
+        console.log(`hasil dari session dengan username ${username}: ${req.session.user}`);
 
-        return res.redirect('/');
+        return res.redirect('/profile');
     } catch (error) {
         return res.status(500).json({ 
             title: 'Error occured when logging in',
