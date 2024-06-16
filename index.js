@@ -3,8 +3,32 @@ const path = require('path');
 const methodOverride = require('method-override');
 const router = require('./routes/index.routes');
 const session = require('express-session');
-const MemoryStore = require('memorystore')(session);
+const pg = require('pg');
+const pgSession = require('connect-pg-simple')(session);
 const dotenv = require('dotenv');
+const { create } = require('domain');
+const { createTextChangeRange } = require('typescript');
+
+const pgPool = new pg.Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
+
+pgPool.query(`
+    CREATE TABLE IF NOT EXISTS "session" (
+        "sid" varchar NOT NULL COLLATE "default",
+        "sess" json NOT NULL,
+        "expire" timestamp(6) NOT NULL
+    )
+    WITH (OIDS=FALSE);
+    ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+`, err => {
+    if (err) {
+        console.log(err);
+    }
+});
 
 const app = express();
 
@@ -19,8 +43,9 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public'))); // static files dari folder public
 app.use(session({
     cookie: { maxAge: 86400000 },
-    store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
+    store: new pgSession({
+        pool: pgPool,
+        tableName: 'session'
     }),
     secret: process.env.SESSION_SECRET,
     resave: process.env.SESSION_RESAVE,
