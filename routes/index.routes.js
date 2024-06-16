@@ -23,6 +23,7 @@ router.get('/shop', auth, controllers.getAllCart);
 router.get('/cart', auth, controllers.getAllCart);
 router.get('/inprocess', auth, controllers.getAllProcess);
 router.get('/completed', auth, controllers.getAllCompleted);
+router.get('/ordered', auth, controllers.getAllOrdered);
 // penggunaan untuk admin
 router.get('/dashboard/user', auth, checkUserRole, controllers.showAllUser);
 router.get('/dashboard/user/:id', auth, checkUserRole, controllers.showUser);
