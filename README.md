@@ -71,7 +71,7 @@ For more information on the importance of a professional README for your reposit
 
 ### Tech Stack <a name="tech-stack"></a>
 
-In this project, we are using Express.js as the backbone, which supports the backend operations of this website. EJS assists as the templating engine for the frontend, ensuring the dynamic web processing. For the database configurations, we are using MySQL client database that helped by Prisma that serves as the conduit. Lastly, bcrypt are used for authentication processing and session management.  
+In this project, we are using Express.js as the backbone, which supports the backend operations of this website. EJS assists as the templating engine for the front end, ensuring dynamic web processing. For the database configurations, we are using PostgreSQL client database helped by Prisma which serves as the conduit. Lastly, bcrypt is used for authentication processing and session management.  
 
 <details>
   <summary>Client</summary>
@@ -95,7 +95,7 @@ In this project, we are using Express.js as the backbone, which supports the bac
 <details>
 <summary>Database</summary>
   <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
+    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
     <li><a href="https://www.prisma.io/">Prisma</a></li>
   </ul>
 </details>
@@ -123,8 +123,8 @@ In this project, we are using Express.js as the backbone, which supports the bac
 
 - **Dynamic Navigation**: Dynamic navigation system that adjusts based on user's interactions.
 - **Simple Design**: Only uses standard HTML and CSS for styling, keeping the design simple and easy to understand.
-- **Structured Folder**: Organized folder structure, easy to navigate between different use-case.
-- **Structured Database Schema**: Well-structured database schema, ensuring efficient data management.
+- **Structured Folder**: Organized folder structure, easy to navigate between different use cases.
+- **Structured Database Schema**: A well-structured database schema ensures efficient data management.
 - **Simple and Easy to Read Session and Authentication Implementation**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -133,7 +133,8 @@ In this project, we are using Express.js as the backbone, which supports the bac
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Coming Soon!](https://github.com/krauchelli/cravecode-dev-js/tree/main)
+For the live demo, we are using Vercel for a deployment.
+- [Click here!](https://cravecode-dev-6ye6b8cg9-krauchellis-projects.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,7 +146,7 @@ To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need:
+To run this project you need:
 
 - [Node.js](https://nodejs.org/en/download/)
 - [Prisma](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/install-prisma-migrate-typescript-postgres)
@@ -164,7 +165,7 @@ npm i
 npx prisma migrate dev
 npx prisma migrate reset
 ```
-! Please take this as an example initialization of project that is using prisma as the conduit for MySQL database.
+! Please take this as an example of the initialization of a project that uses Prisma as the PostgreSQL database's conduit.
 
 ### Usage
 
