@@ -6,8 +6,6 @@ const session = require('express-session');
 const pg = require('pg');
 const pgSession = require('connect-pg-simple')(session);
 const dotenv = require('dotenv');
-const { create } = require('domain');
-const { createTextChangeRange } = require('typescript');
 
 const pgPool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
@@ -16,19 +14,20 @@ const pgPool = new pg.Pool({
     }
 });
 
-pgPool.query(`
-    CREATE TABLE IF NOT EXISTS "session" (
-        "sid" varchar NOT NULL COLLATE "default",
-        "sess" json NOT NULL,
-        "expire" timestamp(6) NOT NULL
-    )
-    WITH (OIDS=FALSE);
-    ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
-`, err => {
-    if (err) {
-        console.log(err);
-    }
-});
+// sebuah query untuk membuat table session, dihapus karena sudah ada di file migration
+// pgPool.query(`
+//     CREATE TABLE IF NOT EXISTS "session" (
+//         "sid" varchar NOT NULL COLLATE "default",
+//         "sess" json NOT NULL,
+//         "expire" timestamp(6) NOT NULL
+//     )
+//     WITH (OIDS=FALSE);
+//     ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+// `, err => {
+//     if (err) {
+//         console.log(err);
+//     }
+// });
 
 const app = express();
 
