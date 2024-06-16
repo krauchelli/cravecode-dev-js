@@ -28,6 +28,7 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "memorystore": "^1.6.7",
     "method-override": "^3.0.0",
     "prisma": "^5.14.0"
   }
