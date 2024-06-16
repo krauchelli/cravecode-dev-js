@@ -18,14 +18,13 @@
               <th>Cart ID</th>
               <th>User</th>
               <th>Items</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <% carts.forEach(cart => { %>
+            <% orders.forEach(order => { %>
               <tr>
-                <td><%= cart.id %></td>
-                <td><%= cart.user.username %></td>
+                <td><%= order.id %></td>
+                <td><%= order.user.username %></td>
                 <td>
                     <table class="table table-bordered">
                         <thead>
@@ -35,7 +34,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <% cart.items.forEach(item => { %>
+                          <% order.items.forEach(item => { %>
                             <tr>
                               <td><%= item.product.name %></td>
                               <td><%= item.quantity %></td>
@@ -44,7 +43,6 @@
                         </tbody>
                       </table>
                 </td>
-                <td><%= cart.status %></td>
               </tr>
             <% }); %>
           </tbody>
