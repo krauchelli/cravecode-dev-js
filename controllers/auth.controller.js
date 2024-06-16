@@ -85,7 +85,7 @@ const loginController = async (req, res) => {
         req.session.user = user.id;
         console.log(req.session.user);
 
-        return res.redirect('/profile');
+        return res.redirect('/');
     } catch (error) {
         return res.status(500).json({ 
             title: 'Error occured when logging in',
