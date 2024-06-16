@@ -75,6 +75,7 @@ const showAllOrder = async (req, res) => {
     try {
         const orders = await prisma.ordered.findMany({
             include: {
+                user: true,
                 items: {
                     include: {
                         product: true
@@ -82,7 +83,7 @@ const showAllOrder = async (req, res) => {
                 }
             }
         });
-        res.status(200).json(orders);
+        res.render('admin/dashboard-order', { orders });
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
     }
@@ -120,7 +121,8 @@ const showAllProduct = async (req, res) => {
                 ordereds: true
             }
         });
-        res.status(200).json(products);
+        //res.status(200).json(products);
+        res.render('admin/dashboard-product', { products });
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
     }
@@ -150,7 +152,8 @@ const showProduct = async (req, res) => {
 const showAllPayMethod = async (req, res) => {
     try {
         const payMethods = await prisma.payMethod.findMany();
-        res.status(200).json(payMethods);
+        // res.status(200).json(payMethods);
+        res.render('admin/dashboard-payment', { payMethods });
     } catch (error) {
         res.status(500).json({ title: 'could not use the controller', message: error.message });
     }
